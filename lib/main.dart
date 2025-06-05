@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:vs_store/home/view/login_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:vs_store/auth/view/otp/otp_vm.dart';
+import 'package:vs_store/auth/view/sign_up/sign_up_vm.dart';
+import 'package:vs_store/get_init.dart';
+import 'package:vs_store/auth/view/account/welcome_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  GetInit.init();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SignUpVm()),
+        ChangeNotifierProvider(create: (_) => OtpVm()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'VS Store',
       theme: ThemeData(primarySwatch: Colors.deepPurple),
-      home: LoginScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
