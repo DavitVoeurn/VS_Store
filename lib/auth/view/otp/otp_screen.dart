@@ -18,12 +18,19 @@ class OtpScreen extends StatelessWidget {
         if (vm.responseStatus.data == true) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (_) => CreatePassword()),
+            MaterialPageRoute(
+              builder:
+                  (_) => CreatePassword(
+                    phoneNumber: phoneNumber,
+                    code: vm.otpCode,
+                  ),
+            ),
           );
+          vm.resetStatus();
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Incorrect OTP')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('Incorrect OTP')));
         }
       } else if (vm.responseStatus.status == Status.error) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -71,6 +78,7 @@ class OtpScreen extends StatelessWidget {
                     //set to true to show as box or false to show as dash
                     showFieldAsBox: true,
                     onSubmit: (String verificationCode) {
+                      vm.VerifyOtp(phoneNumber, verificationCode);
                       vm.VerifyOtp(phoneNumber, verificationCode);
                     }, // end onSubmit
                   ),

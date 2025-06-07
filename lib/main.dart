@@ -5,6 +5,8 @@ import 'package:vs_store/auth/view/sign_up/sign_up_vm.dart';
 import 'package:vs_store/get_init.dart';
 import 'package:vs_store/auth/view/account/welcome_screen.dart';
 
+import 'auth/view/create password/register_request_vm.dart';
+
 void main() {
   GetInit.init();
   runApp(
@@ -12,6 +14,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => SignUpVm()),
         ChangeNotifierProvider(create: (_) => OtpVm()),
+        ChangeNotifierProvider(create: (_) => CreatePasswordVm()),
       ],
       child: const MyApp(),
     ),

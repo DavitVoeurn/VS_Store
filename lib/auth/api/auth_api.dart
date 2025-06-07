@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:vs_store/auth/model/otp_request.dart';
 import 'package:vs_store/auth/model/otp_verify.dart';
+
+import '../view/create password/register_request.dart';
 part 'auth_api.g.dart';
 
 @RestApi(baseUrl: '/api/v1/auth')
@@ -13,4 +15,7 @@ abstract class AuthApi {
 
   @POST('/otp/verify')
   Future<bool> requestVerifyOtp(@Body() OtpVerify request);
+
+  @POST('/register')
+  Future<RegisterRequest> register(@Body() RegisterRequest request);
 }
